@@ -35,7 +35,7 @@ class Wordle {
     static void Main() {
         var data = CSVReader.Read();
 
-        /**
+        /*
         Write your code below here.
         */
     
@@ -44,7 +44,7 @@ class Wordle {
 
         string answer = data[temp]["Name"];
 
-        Console.WriteLine(answer);
+        // Console.WriteLine(answer);
 
         var answers = new HashSet<string>();
         foreach (var row in data)
@@ -63,6 +63,7 @@ class Wordle {
                 if (!answerCharacters.TryAdd(c, 1))
                     ++answerCharacters[c];
 
+            
             Console.WriteLine("단어를 입력하세요. (영어 대문자 5글자) ; 이번을 포함한 남은 기회 {0}번", 5 - test);
 
             string input = Console.ReadLine();
@@ -111,14 +112,16 @@ class Wordle {
             }
             Console.WriteLine();
             
+            // Print all the alphabets and their records
             for (int i = 0; i < letterHit.Length; ++i)
             {
                 Console.Write("{0}:{1}", (char)('A' + i), "NBYG"[letterHit[i]]);
                 if (i < letterHit.Length - 1)
                     Console.Write(", ");
-                if (i == 5)
+                if ((i + 1) % 5 == 0)
                     Console.WriteLine();
             }
+            Console.WriteLine();
             Console.WriteLine();
 
             if (numStrike == 5)
